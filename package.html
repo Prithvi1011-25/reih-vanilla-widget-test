@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REIH Vanilla JS Widget — npm Package</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="listing-shell" id="listing-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="index.html" class="site-header__logo">Harborview Realty</a>
+        <nav class="site-header__nav">
+          <a href="index.html">Home</a>
+          <a href="#listing">Listing</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#widget">Widget Test</a>
+          <a href="script-embed.html">CDN Script</a>
+          <a href="package.html" class="is-active">npm Package</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="listing-page">
+      <section class="listing-intro" id="listing">
+        <p class="integration-badge">Integration: reimaginehome-widget npm package</p>
+        <h1>REIH Vanilla JS Widget — npm Package</h1>
+        <p class="listing-intro__description">
+          Tests the ReimagineHome widget via the <code>reimaginehome-widget</code> npm package
+          using <code>reihWidget.configure()</code> and <code>reihWidget.open()</code> — no CDN
+          script tag. The package is imported as an ES module from a vendored, dev-patched build.
+        </p>
+      </section>
+
+      <section id="hero" class="hero"></section>
+
+      <section class="listing-details">
+        <div class="listing-details__price">$875,000</div>
+        <h2 class="listing-details__address">742 Maple Ridge Drive</h2>
+        <p class="listing-details__meta">4 bed · 3 bath · 2,450 sq ft</p>
+        <p class="listing-details__copy">
+          Bright open-concept home with vaulted ceilings, updated kitchen, and a private backyard
+          patio. Use the hero Reimagine button for all photos, or click a gallery button to
+          reimagine that room only.
+        </p>
+      </section>
+
+      <section class="gallery-section" id="gallery">
+        <h2 id="gallery-heading">Photo Gallery</h2>
+        <div class="gallery" id="gallery-grid"></div>
+      </section>
+
+      <section class="widget-section" id="widget">
+        <button type="button" id="open-btn" class="open-widget-btn">
+          Open ReimagineHome Widget (all photos)
+        </button>
+        <button type="button" id="host-btn" class="host-page-btn">
+          Test Host Page Button
+        </button>
+        <p id="host-status" class="host-status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="package.js"></script>
+</body>
+</html>

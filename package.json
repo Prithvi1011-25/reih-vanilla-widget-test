@@ -1,0 +1,12 @@
+{
+  "name": "reih-vanilla-widget-test",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vanilla HTML/CSS/JS host page for ReimagineHome widget integration testing",
+  "scripts": {
+    "prepare-vendor": "node scripts/prepare-vendor.mjs"
+  },
+  "devDependencies": {
+    "reimaginehome-widget": "^0.0.2"
+  }
+}

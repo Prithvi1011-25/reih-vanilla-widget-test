@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REIH Vanilla JS Widget Compatibility Test</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="listing-shell" id="listing-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="index.html" class="site-header__logo">Harborview Realty</a>
+        <nav class="site-header__nav">
+          <a href="index.html" class="is-active">Home</a>
+          <a href="script-embed.html">CDN Script</a>
+          <a href="package.html">npm Package</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="listing-page home-page">
+      <h1>REIH Vanilla JS Widget Compatibility Test</h1>
+      <p class="listing-intro__description">
+        Choose an integration approach to test the ReimagineHome widget on this sample
+        listing page — plain HTML, CSS, and JavaScript only.
+      </p>
+
+      <div class="home-cards">
+        <a href="script-embed.html" class="home-card">
+          <h2>CDN Script Embed</h2>
+          <p>
+            Original approach: load <code>widget.js</code> from CDN, set
+            <code>window.reihWidgetConfig</code>, use <code>window.reihWidget.open()</code>.
+          </p>
+        </a>
+
+        <a href="package.html" class="home-card home-card--primary">
+          <h2>npm Package</h2>
+          <p>
+            New approach: import <code>reihWidget</code> from
+            <code>reimaginehome-widget</code>, call <code>configure()</code> and
+            <code>open()</code> — no CDN script tag.
+          </p>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { applyHostCssVars } from "./shared.js";
+    document.addEventListener("DOMContentLoaded", applyHostCssVars);
+  </script>
+</body>
+</html>
