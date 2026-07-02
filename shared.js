@@ -72,15 +72,6 @@ export function resolveListingMedia(media) {
   });
 }
 
-export function buildWidgetLanguage() {
-  return [
-    { code: "en-US", name: "English (United States)", nativeName: "English (US)" },
-    { code: "en-GB", name: "English (United Kingdom)", nativeName: "English (UK)" },
-    { code: "pl-PL", name: "Polish", nativeName: "Polski" },
-    { code: "es-ES", name: "Spanish", nativeName: "Español" },
-  ];
-}
-
 export function buildWidgetBranding() {
   return {
     logo: "https://ecdn.styldod.com/assets/logo/6a2bca9bce2a355c2c13d058.svg",
@@ -131,7 +122,6 @@ export function buildScriptEmbedWidgetConfig() {
       mode: "simple",
       branding: buildWidgetBranding(),
       sidebar_position: "right",
-      language: buildWidgetLanguage(),
     },
     widgetCallbacks
   );
@@ -145,7 +135,6 @@ export function buildNpmWidgetConfigureOptions() {
       mode: "simple",
       branding: buildWidgetBranding(),
       sidebar_position: "right",
-      language: buildWidgetLanguage(),
     },
     widgetCallbacks
   );
@@ -157,10 +146,6 @@ export function openReihWithMedia(widget, media) {
     media: media.map(function (item) {
       return { image_url: resolveMediaUrl(item.image_url) };
     }),
-    mode: "simple",
-    branding: buildWidgetBranding(),
-    sidebar_position: "right",
-    language: buildWidgetLanguage(),
   });
 }
 
