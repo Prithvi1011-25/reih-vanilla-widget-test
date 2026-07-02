@@ -1,7 +1,6 @@
 import {
   WIDGET_PUBLIC_KEY,
   applyHostCssVars,
-  buildScriptEmbedWidgetConfig,
   clearReihLoader,
   createWidgetOpener,
   initListingPage,
@@ -83,9 +82,54 @@ var openWidget = createWidgetOpener(waitForReihWidget, LOG_PREFIX);
 document.addEventListener("DOMContentLoaded", function () {
   applyHostCssVars();
 
-  var config = buildScriptEmbedWidgetConfig();
-  window.reihWidgetConfig = config;
-  console.log(LOG_PREFIX + " Widget config created", config.branding);
+  window.reihWidgetConfig = {
+    media: resolveListingMedia(),
+    // mode: "simple",
+    // user_id: "demo-user-123",
+    // session_id: "demo-client-session-123",
+    // listing_id: "demo-listing-123",
+    // branding: {
+    //   logo: "https://ecdn.styldod.com/assets/logo/6a2bca9bce2a355c2c13d058.svg",
+    //   colors: {
+    //     primary: "#071121FF",
+    //     secondary: "#1B232E",
+    //     text_primary: "#071121FF",
+    //     text_secondary: "#1B232E",
+    //   },
+    //   // typography: {
+    //   //   font_family: "'Caveat', cursive",
+    //   //   font_url: "https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap",
+    //   // },
+    // },
+    // body: {
+    //   text: "Do you like this arrangement?",
+    //   subtext: "Contact the advertiser to ask for details and schedule a live viewing.",
+    //   action_label: "Close and send message",
+    // },
+    // header: {
+    //   text: "Visualize Your Space",
+    //   subtext: "See how this property could look with different styles",
+    //   action_label: "Schedule a Viewing",
+    // },
+    // footer: {
+    //   text: "Powered by ReimagineHome",
+    //   subtext: "AI-powered interior design at your fingertips",
+    //   action_label: "Learn More",
+    // },
+    // onComplete: function (detail) {
+    //   console.log("[reih] onComplete:", detail);
+    // },
+    // onError: function (err) {
+    //   console.error("[reih] onError:", err);
+    // },
+    // onClose: function () {
+    //   console.log("[reih] onClose: widget closed");
+    // },
+    // onActionClick: function (event) {
+    //   console.log("[reih] onActionClick:", event);
+    // },
+  };
+  console.log(LOG_PREFIX + " Widget config created", window.reihWidgetConfig);
 
   initListingPage({ openWidget: openWidget, logPrefix: LOG_PREFIX });
   loadWidgetScript();
