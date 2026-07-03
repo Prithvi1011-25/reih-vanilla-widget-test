@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.reihWidgetConfig = {
     media: resolveListingMedia(),
-    // mode: "simple",
+    mode: "agentic",
     // user_id: "demo-user-123",
     // session_id: "demo-client-session-123",
     // listing_id: "demo-listing-123",
