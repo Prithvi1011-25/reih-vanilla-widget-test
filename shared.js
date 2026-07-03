@@ -6,52 +6,78 @@ export var REIH_LOADER_ID = "reih-host-loader";
 export var WIDGET_DEV_API_BASE_URL =
   "https://oetb78o6i5.execute-api.us-west-2.amazonaws.com/dev";
 
+var PROPERTY_4_IMAGES = "/images/property-4";
+
 export var LISTING_MEDIA = [
   {
-    image_url:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=600&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/08_living_room_furnished.png",
+    label: "Furnished living room",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/07_entry_hallway.png",
+    label: "Entry hallway",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/09_living_room_angle2.png",
+    label: "Living room, alternate angle",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/living_room_angle3.png",
+    label: "Living room view",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1721244653580-79577d2822a2?q=80&w=2096&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image_url: PROPERTY_4_IMAGES + "/living_room_angle4.png",
+    label: "Living room seating area",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1619418602850-35ad20aa1700?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image_url: PROPERTY_4_IMAGES + "/10_kitchen_furnished.png",
+    label: "Furnished kitchen",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1721244654210-a505a99661e9?q=80&w=1704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image_url: PROPERTY_4_IMAGES + "/11_kitchen_dining_angle.png",
+    label: "Kitchen and dining area",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/14_master_bedroom_furnished.png",
+    label: "Master bedroom",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&h=800&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/15_bedroom2_empty.png",
+    label: "Second bedroom",
   },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&h=800&fit=crop",
+    image_url: PROPERTY_4_IMAGES + "/16_kids_room_furnished.png",
+    label: "Kids room",
   },
-  { image_url: "/images/invalid-format.txt" },
   {
-    image_url:
-      "https://images.unsplash.com/photo-1630699144919-681cf308ae82?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image_url: PROPERTY_4_IMAGES + "/16_kids_room_angle2.png",
+    label: "Kids room, alternate angle",
   },
+  {
+    image_url: PROPERTY_4_IMAGES + "/17_study_empty.png",
+    label: "Study",
+  },
+  {
+    image_url: PROPERTY_4_IMAGES + "/13_staircase_landing.png",
+    label: "Staircase landing",
+  },
+  {
+    image_url: PROPERTY_4_IMAGES + "/18_bathroom1_empty.png",
+    label: "Primary bathroom",
+  },
+  {
+    image_url: PROPERTY_4_IMAGES + "/19_bathroom2_empty.png",
+    label: "Second bathroom",
+  },
+  {
+    image_url: PROPERTY_4_IMAGES + "/20_laundry_utility.png",
+    label: "Laundry and utility room",
+  },
+  {
+    image_url: PROPERTY_4_IMAGES + "/21_balcony_terrace.png",
+    label: "Balcony terrace",
+  },
+  { image_url: "/images/invalid-format.txt", label: "Invalid format test" },
 ];
 
 export function clearReihLoader() {
@@ -175,15 +201,7 @@ export function createWidgetOpener(getWidget, logPrefix) {
 }
 
 export function getGalleryAlt(media, index) {
-  if (media.image_url.indexOf("photo-1545324418") !== -1) {
-    return "Exterior view of a multi-story apartment building";
-  }
-  if (media.image_url.indexOf("photo-1600047509807") !== -1) {
-    return "Master bedroom with natural light";
-  }
-  if (media.image_url.indexOf("photo-1600607687920") !== -1) {
-    return "Open-plan living and dining area";
-  }
+  if (media.label) return media.label;
   if (media.image_url.indexOf("invalid-format") !== -1) {
     return "Invalid format test (text file, not an image)";
   }
@@ -251,7 +269,7 @@ export function initListingPage(options) {
 
   heroSection.appendChild(
     createMediaFrame(heroMedia, {
-      alt: "Modern home exterior with landscaped front yard",
+      alt: heroMedia.label || "Property listing hero photo",
       imageClass: "hero__image",
       label: "hero photo",
       onOpen: function () {
