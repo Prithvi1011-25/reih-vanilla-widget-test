@@ -1,6 +1,6 @@
 /** Shared listing + widget helpers for both vanilla integrations. */
 
-export var WIDGET_PUBLIC_KEY = "public_key";
+export var WIDGET_PUBLIC_KEY = "ppk_SQl4LpRx106qAzdVoRSPgmh-";
 export var REIH_LOADER_ID = "reih-host-loader";
 
 export var WIDGET_DEV_API_BASE_URL =
