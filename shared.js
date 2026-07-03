@@ -145,7 +145,7 @@ export function buildScriptEmbedWidgetConfig() {
   return Object.assign(
     {
       media: resolveListingMedia(),
-      mode: "agentic",
+      mode: "simple",
       branding: buildWidgetBranding(),
       sidebar_position: "right",
     },
@@ -158,7 +158,7 @@ export function buildNpmWidgetConfigureOptions() {
     {
       public_key: WIDGET_PUBLIC_KEY,
       media: resolveListingMedia(),
-      mode: "agentic",
+      mode: "simple",
       branding: buildWidgetBranding(),
       sidebar_position: "right",
     },
