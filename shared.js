@@ -166,19 +166,27 @@ export function buildNpmWidgetConfigureOptions() {
   );
 }
 
-export function openReihWithMedia(widget, media) {
+export function openReihWithMedia(widget, media, overrides) {
   clearReihLoader();
-  return widget.open({
-    media: media.map(function (item) {
+  var config = {
+    media: (media || []).map(function (item) {
       return { image_url: resolveMediaUrl(item.image_url) };
     }),
-  });
+  };
+  // Merge per-call overrides (e.g. `mode`, `allow_upload`) over the resolved
+  // media so a single opener can drive every test combination.
+  if (overrides) {
+    Object.keys(overrides).forEach(function (key) {
+      config[key] = overrides[key];
+    });
+  }
+  return widget.open(config);
 }
 
 export function createWidgetOpener(getWidget, logPrefix) {
   var opening = false;
 
-  return function openWidget(media) {
+  return function openWidget(media, overrides) {
     if (opening) return;
 
     opening = true;
@@ -188,7 +196,7 @@ export function createWidgetOpener(getWidget, logPrefix) {
         return getWidget();
       })
       .then(function (widget) {
-        return openReihWithMedia(widget, media);
+        return openReihWithMedia(widget, media, overrides);
       })
       .catch(function (error) {
         clearReihLoader();
@@ -206,6 +214,44 @@ export function getGalleryAlt(media, index) {
     return "Invalid format test (text file, not an image)";
   }
   return "Listing photo " + (index + 2);
+}
+
+/**
+ * Wire the mode / no-image test buttons in the widget section (present on both
+ * integration pages). Each opens the widget with a different config combination:
+ *   - #open-agentic-btn  → agentic mode, all listing photos
+ *   - #upload-simple-btn → simple mode, no media (forces the upload screen)
+ *   - #upload-agentic-btn→ agentic mode, no media (forces the upload screen)
+ * `allow_upload: true` + empty `media` is the host-flag path that makes the
+ * widget show the "upload your photos" screen instead of a gallery.
+ */
+export function bindModeTestButtons(options) {
+  var openWidget = options.openWidget;
+  var logPrefix = options.logPrefix;
+
+  var agenticBtn = document.getElementById("open-agentic-btn");
+  if (agenticBtn) {
+    agenticBtn.addEventListener("click", function () {
+      console.log(logPrefix + " Open (agentic, all photos)");
+      openWidget(resolveListingMedia(), { mode: "agentic" });
+    });
+  }
+
+  var uploadSimpleBtn = document.getElementById("upload-simple-btn");
+  if (uploadSimpleBtn) {
+    uploadSimpleBtn.addEventListener("click", function () {
+      console.log(logPrefix + " Open (simple, no media → upload)");
+      openWidget([], { mode: "simple", allow_upload: true });
+    });
+  }
+
+  var uploadAgenticBtn = document.getElementById("upload-agentic-btn");
+  if (uploadAgenticBtn) {
+    uploadAgenticBtn.addEventListener("click", function () {
+      console.log(logPrefix + " Open (agentic, no media → upload)");
+      openWidget([], { mode: "agentic", allow_upload: true });
+    });
+  }
 }
 
 export function bindHostPageButton() {
@@ -301,5 +347,6 @@ export function initListingPage(options) {
     });
   }
 
+  bindModeTestButtons({ openWidget: openWidget, logPrefix: logPrefix });
   bindHostPageButton();
 }
