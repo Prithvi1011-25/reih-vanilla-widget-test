@@ -306,6 +306,20 @@ code {
   outline-offset: 2px;
 }
 
+/* Agentic-mode variant — indigo so it reads distinctly from the green simple button. */
+.open-widget-btn--agentic {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.open-widget-btn--agentic:hover {
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+}
+
+.open-widget-btn--agentic:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.45);
+}
+
 .host-page-btn {
   appearance: none;
   border: 1px solid #e2e8f0;
